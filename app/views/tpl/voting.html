@@ -1,0 +1,71 @@
+<style>
+    .parties {
+        margin-top: 0;
+    }
+    .parties .party {
+        padding: 3px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+        .parties .party img {
+            border-radius: 3px;
+            width: 100%;
+            border-radius: 3px;
+        }
+        .parties .party p {
+            font-size: 7px;
+            word-wrap: break-word;
+            height: 20px;
+            word-break: keep-all;
+            white-space: normal;
+        }
+
+        @media (min-width: 768px) {
+            .parties .party p {
+                font-size: 12px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .parties .party p {
+                font-size: 12px;
+            }
+        }
+    .modal-body {
+        text-align: center;
+        margin: 0;
+        padding: 5px
+    }
+    .modal-footer {
+        text-align: center;
+        margin: 0;
+        padding: 5px;
+    }
+    body.modal-open {
+        margin-right: 0px;
+    }
+</style>
+<div class="row parties">
+    <% _.each(parties, function(party) { %>
+        <div class="col-xs-4 col-sm-3 col-md-3">
+            <a href="" class="btn btn-default party" data-toggle="modal" data-target="#party-<%= party.id %>">
+                <img src="<%= server %>/img/politicians/<%= party.foto %>"></td>
+            </a>
+            <div class="modal fade" id="party-<%= party.id %>" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <p><%= party.representName %> <%= party.representSurname %></p>
+                            <p><%= party.name %></p>
+                            <img class="img-thumbnail" src="<%= server %>/img/politicians/<%= party.foto %>">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="select-btn btn btn-default" party-id="<%= party.id %>">Seleccionar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% }); %>
+</div>
