@@ -8,9 +8,9 @@
     <name>Encuesta de boca de urna</name>
     <icon src="icon.png" />
 
-    <preference name="phonegap-version" value="3.1.0" />
+    <preference name="phonegap-version" value="2.9.0" />
 
     <gap:platform name="android" />
 
-    <gap:plugin name="org.apache.cordova.core.camera" />
+    <plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
 </widget>
