@@ -6,7 +6,6 @@ define(function (require) {
         Backbone            = require('backbone'),
 
         Table = Backbone.Model.extend({
-            urlRoot: config.server + "/tables"
         }),
 
         TableCollection = Backbone.Collection.extend({

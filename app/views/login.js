@@ -10,14 +10,13 @@ define(function (require) {
         template = _.template(tpl);
 
     return Backbone.View.extend({
+        el: '.content',
         initialize: function () {
             this.render();
-
-            $('#return-message').hide();
         },
-        el: '.content',
         render: function () {
             this.$el.html(template());
+            $('#return-message').hide();
 
             return this;
         },
@@ -37,14 +36,13 @@ define(function (require) {
             $.ajax({
                 url: config.server + '/login_check',
                 type: 'POST',
-                async: false,
                 dataType: "json",
                 data: formValues,
                 success: function (data) {
                     if(data.error) {
                         $('#return-message').text(data.error.text).show();
                     } else {
-                        Backbone.history.navigate("mesas", {trigger: true});
+                        Backbone.history.navigate("intro", {trigger: true});
                     }
                 }
             });

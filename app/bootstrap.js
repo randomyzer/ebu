@@ -1,20 +1,16 @@
 define('config', {
-    server: 'http://trep.dev/server/web'
-    //server: 'http://trepws.vanillasys.com/web'
+    server: 'http://encuesta-de-salida.vanillasys.com/server/web'
 });
 
 require.config({
     baseUrl: '',
     waitSeconds: 200,
     paths: {
-        jquery:                         'vendor/jquery/jquery-min',
-        "jquery-ui":                    'vendor/jquery-ui/js/jquery-ui-min',
-        "jquery-timepicker-addon":      'vendor/jquery-timepicker-addon/js/jquery-ui-timepicker-addon-min',
-        "jquery-timepicker-addon-i18n": 'vendor/jquery-timepicker-addon/js/i18n/jquery-ui-timepicker-es',
-        backbone:                       'vendor/backbone/backbone-min',
-        underscore:                     'vendor/underscore/underscore-min',
-        text:                           'vendor/requirejs/text',
-        twitter_bootstrap:              'vendor/bootstrap/js/bootstrap-min'
+        jquery:             'vendor/jquery/jquery-min',
+        backbone:           'vendor/backbone/backbone-min',
+        underscore:         'vendor/underscore/underscore-min',
+        text:               'vendor/requirejs/text',
+        twitter_bootstrap:  'vendor/bootstrap/js/bootstrap-min'
     },
 
     shim: {
@@ -27,15 +23,6 @@ require.config({
         },
         'twitter_bootstrap': {
             deps: ['jquery']
-        },
-        'jquery-ui': {
-            deps: ['jquery']
-        },
-        'jquery-timepicker-addon': {
-            deps: ['jquery-ui']
-        },
-        'jquery-timepicker-addon-i18n': {
-            deps: ['jquery-timepicker-addon']
         }
     },
 

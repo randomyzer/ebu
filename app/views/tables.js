@@ -10,18 +10,13 @@ define(function (require) {
         template = _.template(tpl);
 
     return Backbone.View.extend({
-        initialize: function () {
-            var self = this;
-
-            $.when(
-                this.options.tables.fetch()
-            ).then(function() {
-                self.render();
-            });
-        },
         el: '.content',
+        initialize: function () {
+            this.listenTo(this.collection, 'sync', this.render);
+            this.collection.fetch();
+        },
         render: function () {
-            this.$el.html(template({tables: this.options.tables.toJSON()}));
+            this.$el.html(template({tables: this.collection.toJSON()}));
 
             return this;
         }

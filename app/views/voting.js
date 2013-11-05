@@ -1,63 +1,49 @@
 define(function (require) {
     "use strict";
 
-    var config = require('config'),
-        $ = require('jquery'),
-        _ = require('underscore'),
-        Backbone = require('backbone'),
-        tpl = require('text!app/views/tpl/voting.html'),
+    var config              = require('config'),
+        $                   = require('jquery'),
+        _                   = require('underscore'),
+        Backbone            = require('backbone'),
+        tpl                 = require('text!app/views/tpl/voting.html'),
+        twitterBootstrap    = require('twitter_bootstrap'),
 
         template = _.template(tpl);
 
     return Backbone.View.extend({
-        initialize: function () {
-            var self = this;
-
-            $.when(
-                this.options.table.fetch(),
-                this.options.parties.fetch(),
-                this.options.votes.fetch({data: {table_id: this.options.tableId}})
-            ).then(function() {
-                self.render();
-            });
-        },
         el: '.content',
+        initialize: function () {
+            this.listenTo(this.collection, 'sync', this.render);
+            this.collection.fetch();
+        },
         render: function () {
             this.$el.html(template({
                 server: config.server,
-                table: this.options.table.toJSON(),
-                parties: this.options.parties.toJSON(),
-                votes: this.options.votes.toJSON()
+                tableId: this.options.tableId,
+                parties: this.collection.toJSON()
             }));
 
             return this;
         },
-        
+
         events: {
-            "click .select-btn": "save"
+            "click .parties .select-btn": "addVoting"
         },
 
-        save: function (event) {
+        addVoting: function (event) {
             event.preventDefault();
 
-            var votes = [];
-            $("input").each(function() {
-                if ($(this).attr("party-id")) {
-                    votes["party[" + $(this).attr("party-id") + "]"] = $(this).val();
-                }
-            });
+            var id = $(event.currentTarget).attr('party-id');
 
-            var formValues = $.extend(
-                {
-                    table_id: this.options.tableId
-                },
-                votes
-            );
+            var formValues = {
+                table_id: this.options.tableId,
+                party_id: id
+            };
 
             var view = this;
 
             $.ajax({
-                url: config.server + '/votes/save',
+                url: config.server + '/voto/sumar',
                 type: 'POST',
                 dataType: "json",
                 data: formValues,
@@ -65,7 +51,11 @@ define(function (require) {
                     view.undelegateEvents();
 
                     if(!data.error) {
-                        Backbone.history.navigate("mesa/" + view.options.tableId + "/ver", {trigger: true});
+                        $(event.currentTarget).closest(".modal").on('hidden.bs.modal', function () {
+                            Backbone.history.navigate("gracias", {trigger: true});
+                        });
+
+                        $(event.currentTarget).closest(".modal").modal('hide');
                     }
                 }
             });
