@@ -6,6 +6,8 @@
 
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="vendor/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="vendor/jquery-ui/css/smoothness/jquery-ui-1.9.0.custom.min.css" rel="stylesheet">
+    <link href="vendor/jquery-timepicker-addon/css/jquery-ui-timepicker-addon-min.css" rel="stylesheet">
     <!--[if lt IE 8]>
     <link href="vendor/fontawesome/css/font-awesome-ie7.min.css" rel="stylesheet">
     <![endif]-->
@@ -35,6 +37,24 @@
             text-align: center;
             margin: 0;
             font-size: 10px;
+        }
+        .action-buttons {
+            text-align:center;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        .btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+            opacity: 0.30;
+        }
+        .btn-gray {
+            background-color: #ccc;
+            border-color: #ADADAD;
+            color: #333333;
+        }
+        .btn-gray:hover, .btn-info:focus, .btn-info:active, .btn-info.active {
+            background-color: #bbb;
+            border-color: #ADADAD;
+            color: #FFFFFF;
         }
     </style>
 </head>

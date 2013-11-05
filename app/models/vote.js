@@ -5,21 +5,21 @@ define(function (require) {
         $                   = require('jquery'),
         Backbone            = require('backbone'),
 
-        Table = Backbone.Model.extend({
-            urlRoot: config.server + "/tables"
+        Vote = Backbone.Model.extend({
+            urlRoot: config.server + "/votes"
         }),
 
-        TableCollection = Backbone.Collection.extend({
-            model: Table,
-            url: config.server + "/tables",
+        VoteCollection = Backbone.Collection.extend({
+            model: Vote,
+            url: config.server + "/votes",
             parse: function(response) {
                 return response.results;
             }
         });
 
     return {
-        Table: Table,
-        TableCollection: TableCollection
+        Vote: Vote,
+        VoteCollection: VoteCollection
     };
 
 });

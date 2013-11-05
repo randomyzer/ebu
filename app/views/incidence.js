@@ -5,7 +5,7 @@ define(function (require) {
         $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
-        tpl = require('text!app/views/tpl/voting.html'),
+        tpl = require('text!app/views/tpl/incidence.html'),
 
         template = _.template(tpl);
 
@@ -15,8 +15,7 @@ define(function (require) {
 
             $.when(
                 this.options.table.fetch(),
-                this.options.parties.fetch(),
-                this.options.votes.fetch({data: {table_id: this.options.tableId}})
+                this.options.incidences.fetch()
             ).then(function() {
                 self.render();
             });
@@ -26,38 +25,30 @@ define(function (require) {
             this.$el.html(template({
                 server: config.server,
                 table: this.options.table.toJSON(),
-                parties: this.options.parties.toJSON(),
-                votes: this.options.votes.toJSON()
+                incidences: this.options.incidences.toJSON()
             }));
 
             return this;
         },
-        
+
         events: {
-            "click .select-btn": "save"
+            "click .select-btn": "save",
+            "change #incidence": "checkIncidence"
         },
 
         save: function (event) {
             event.preventDefault();
 
-            var votes = [];
-            $("input").each(function() {
-                if ($(this).attr("party-id")) {
-                    votes["party[" + $(this).attr("party-id") + "]"] = $(this).val();
-                }
-            });
-
-            var formValues = $.extend(
-                {
-                    table_id: this.options.tableId
-                },
-                votes
-            );
+            var formValues = {
+                table_id: this.options.table.get('id'),
+                incidence_id: $('#incidence').val(),
+                custom_incidence: $('#custom_incidence').val()
+            };
 
             var view = this;
 
             $.ajax({
-                url: config.server + '/votes/save',
+                url: config.server + '/voting/save-incidence',
                 type: 'POST',
                 dataType: "json",
                 data: formValues,
@@ -65,10 +56,18 @@ define(function (require) {
                     view.undelegateEvents();
 
                     if(!data.error) {
-                        Backbone.history.navigate("mesa/" + view.options.tableId + "/ver", {trigger: true});
+                        Backbone.history.navigate("mesas", {trigger: true});
                     }
                 }
             });
+        },
+
+        checkIncidence: function (event) {
+            if (0 == $(event.currentTarget).val()) {
+                $("#custom_incidence").removeClass('hide');
+            } else {
+                $("#custom_incidence").addClass('hide');
+            }
         }
     });
 });

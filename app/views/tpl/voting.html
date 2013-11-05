@@ -1,77 +1,120 @@
-<style>
-    .parties {
-        position: absolute;
-        top: 0;
-        left: 0;
-        padding: 10px;
-        z-index: 9999;
-        background-color: #FFF;
-        margin-top: 0;
-    }
-    .parties .party {
-        padding: 3px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-        .parties .party img {
-            border-radius: 3px;
-            width: 100%;
-            border-radius: 3px;
-        }
-        .parties .party p {
-            font-size: 7px;
-            word-wrap: break-word;
-            height: 20px;
-            word-break: keep-all;
-            white-space: normal;
-        }
+<table class="table table-bordered">
+    <tbody>
+        <tr>
+            <th>Mesa:</th>
+            <td><%= table.id %></td>
+        </tr>
+        <tr>
+            <th>Departamento:</th>
+            <td><%= table.department %></td>
+        </tr>
+        <tr>
+            <th>Municipio:</th>
+            <td><%= table.municipal %></td>
+        </tr>
+        <tr>
+            <th>Fecha de apertura:</th>
+            <td><%= table.openDate %></td>
+        </tr>
+        <tr>
+            <th>Fecha de cierre:</th>
+            <td><%= table.closeDate %></td>
+        </tr>
+        <tr>
+            <th>Flujo:</th>
+            <td><%= table.flow %></td>
+        </tr>
+    </tbody>
+</table>
 
-        @media (min-width: 768px) {
-            .parties .party p {
-                font-size: 12px;
-            }
-        }
+<!--
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Descripción</th>
+            <th>Votos</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Total de boletas recibidas</td>
+            <td style="width:70px;"><input type="number" class="form-control input-sm"></td>
+        </tr>
+        
+        <tr>
+            <td>Total de boletas sobrantes</td>
+            <td style="width:70px;"><input type="number" class="form-control input-sm"></td>
+        </tr>
+        <tr>
+            <td>Total de ciudadanos que votaron</td>
+            <td style="width:70px;"><input type="number" class="form-control input-sm"></td>
+        </tr>
+        <tr>
+            <td>Total de boletas depositadas</td>
+            <td style="width:70px;"><input type="number" class="form-control input-sm"></td>
+        </tr>
+    </tbody>
+</table>
+-->
 
-        @media (min-width: 768px) {
-            .parties .party p {
-                font-size: 12px;
-            }
-        }
-    .modal-body {
-        text-align: center;
-        margin: 0;
-        padding: 5px
-    }
-    .modal-footer {
-        text-align: center;
-        margin: 0;
-        padding: 5px;
-    }
-    body.modal-open {
-        margin-right: 0px;
-    }
-</style>
-<div class="row parties">
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th colspan="2">Partido</th>
+            <th>Votos</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% _.each(parties, function(party) { %>
+            <tr>
+                <td width="70px">
+                    <img style="width: 50px" class="img-thumbnail" src="<%= server %>/img/parties/<%= party.foto %>" alt="<%= party.name %>">
+                </td>
+                <td>
+                    <%= party.name %>
+                </td>
+                <td style="width:70px;">
+                    <input type="number" party-id="<%= party.id %>" name="party[vote]" class="form-control input-sm"<% _.each(votes, function(vote) { %><% if (vote.partyId == party.id) { %>value="<%= vote.count %>"<% } %><% }); %>>
+                </td>
+            </tr>
+        <% }); %>
+    </tbody>
+</table>
+
+<!--
+<table class="table table-bordered">
+    <tbody>
+        <tr>
+            <td>Votos nulos</td>
+            <td style="width:70px;"><input type="number" class="form-control input-sm"></td>
+        </tr>
+    </tbody>
+</table>
+-->
+
+<!--
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th colspan="2">Representantes de los partidos políticos</th>
+        </tr>
+        <tr>
+            <th>Partido</th>
+            <th>Nombres</th>
+        </tr>
+    </thead>
+    <tbody>
     <% _.each(parties, function(party) { %>
-        <div class="col-xs-4 col-sm-3 col-md-3">
-            <a href="" class="btn btn-default party" data-toggle="modal" data-target="#party-<%= party.id %>">
-                <img src="<%= server %>/img/politicians/<%= party.foto %>"></td>
-            </a>
-            <div class="modal fade" id="party-<%= party.id %>" tabindex="-1" role="dialog">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <p><%= party.representName %> <%= party.representSurname %></p>
-                            <p><%= party.name %></p>
-                            <img class="img-thumbnail" src="<%= server %>/img/politicians/<%= party.foto %>">
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="select-btn btn btn-default" party-id="<%= party.id %>">Seleccionar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <tr>
+        <td><%= party.name %></td>
+        <td><%= party.represent %></td>
+    </tr>
     <% }); %>
+    </tbody>
+</table>
+-->
+
+<div class="action-buttons">
+    <a class="cancel-btn btn btn-default" href="#mesa/<%= table.id %>/urnas"><i class="icon-arrow-left"></i> Cancelar</a>
+    <button class="select-btn btn btn-default" type="button" ><i class="icon-ok"></i> Ver</button>
 </div>

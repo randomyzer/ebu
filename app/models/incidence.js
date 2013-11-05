@@ -5,21 +5,20 @@ define(function (require) {
         $                   = require('jquery'),
         Backbone            = require('backbone'),
 
-        Table = Backbone.Model.extend({
-            urlRoot: config.server + "/tables"
+        Incidence = Backbone.Model.extend({
         }),
 
-        TableCollection = Backbone.Collection.extend({
-            model: Table,
-            url: config.server + "/tables",
+        IncidenceCollection = Backbone.Collection.extend({
+            model: Incidence,
+            url: config.server + "/incidences",
             parse: function(response) {
                 return response.results;
             }
         });
 
     return {
-        Table: Table,
-        TableCollection: TableCollection
+        Incidence: Incidence,
+        IncidenceCollection: IncidenceCollection
     };
 
 });

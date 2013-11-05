@@ -6,6 +6,7 @@ define(function (require) {
         Backbone            = require('backbone'),
 
         Party = Backbone.Model.extend({
+            urlRoot: config.server + "/parties"
         }),
 
         PartyCollection = Backbone.Collection.extend({

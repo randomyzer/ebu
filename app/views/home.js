@@ -10,10 +10,10 @@ define(function (require) {
         template = _.template(tpl);
 
     return Backbone.View.extend({
-        el: '.content',
         initialize: function () {
             this.render();
         },
+        el: '.content',
         render: function () {
             this.$el.html(template());
 

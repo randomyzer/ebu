@@ -5,7 +5,7 @@ define(function (require) {
         $ = require('jquery'),
         _ = require('underscore'),
         Backbone = require('backbone'),
-        tpl = require('text!app/views/tpl/voting.html'),
+        tpl = require('text!app/views/tpl/preview.html'),
 
         template = _.template(tpl);
 
@@ -32,32 +32,22 @@ define(function (require) {
 
             return this;
         },
-        
+
         events: {
-            "click .select-btn": "save"
+            "click .ok-btn": "confirm"
         },
 
-        save: function (event) {
+        confirm: function (event) {
             event.preventDefault();
 
-            var votes = [];
-            $("input").each(function() {
-                if ($(this).attr("party-id")) {
-                    votes["party[" + $(this).attr("party-id") + "]"] = $(this).val();
-                }
-            });
-
-            var formValues = $.extend(
-                {
-                    table_id: this.options.tableId
-                },
-                votes
-            );
+            var formValues = {
+                table_id: this.options.tableId
+            };
 
             var view = this;
 
             $.ajax({
-                url: config.server + '/votes/save',
+                url: config.server + '/votes/confirm',
                 type: 'POST',
                 dataType: "json",
                 data: formValues,
@@ -65,7 +55,7 @@ define(function (require) {
                     view.undelegateEvents();
 
                     if(!data.error) {
-                        Backbone.history.navigate("mesa/" + view.options.tableId + "/ver", {trigger: true});
+                        Backbone.history.navigate("mesa/" + view.options.tableId + "/urnas", {trigger: true});
                     }
                 }
             });

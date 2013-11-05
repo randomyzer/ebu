@@ -5,12 +5,12 @@
         id        = "com.vanillasys.trep"
         version   = "1.0.0">
 
-    <name>Encuesta de boca de urna</name>
+    <name>Conteo rápido</name>
     <icon src="icon.png" />
 
-    <preference name="phonegap-version" value="2.9.0" />
+    <preference name="phonegap-version" value="3.0.0" />
 
     <gap:platform name="android" />
 
-    <plugin name="Camera" value="org.apache.cordova.CameraLauncher" />
+    <gap:plugin name="org.apache.cordova.core.camera" />
 </widget>

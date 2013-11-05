@@ -5,7 +5,8 @@ define(function (require) {
         $                   = require('jquery'),
         _                   = require('underscore'),
         Backbone            = require('backbone'),
-        tpl                 = require('text!app/views/tpl/tables.html'),
+        Bootstrap           = require('twitter_bootstrap'),
+        tpl                 = require('text!app/views/tpl/urns.html'),
 
         template = _.template(tpl);
 
@@ -14,14 +15,18 @@ define(function (require) {
             var self = this;
 
             $.when(
-                this.options.tables.fetch()
+                this.options.table.fetch(),
+                this.options.urns.fetch()
             ).then(function() {
                 self.render();
             });
         },
         el: '.content',
         render: function () {
-            this.$el.html(template({tables: this.options.tables.toJSON()}));
+            this.$el.html(template({
+                table: this.options.table.toJSON(),
+                urns: this.options.urns.toJSON()
+            }));
 
             return this;
         }

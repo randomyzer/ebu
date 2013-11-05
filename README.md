@@ -1,1 +1,0 @@
-Aplicación "Encuesta de Salida"
