@@ -27,7 +27,7 @@ require.config({
     },
 
     // Debug mode
-    urlArgs: "v=" +  (new Date()).getTime()
+    //urlArgs: "v=" +  (new Date()).getTime()
 });
 
 require(
