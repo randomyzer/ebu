@@ -14,7 +14,7 @@ define(function (require) {
         el: '.content',
         initialize: function () {
             this.listenTo(this.collection, 'sync', this.render);
-            this.collection.fetch({data: {table_id: this.options.tableId, type: 2}});
+            this.collection.fetch({data: {table_id: this.options.tableId, type: 1}});
         },
         render: function () {
             this.$el.html(template({
