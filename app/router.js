@@ -17,19 +17,12 @@ define(function (require) {
 
     return Backbone.Router.extend({
         routes: {
-            "": "home",
+            "": "tables",
             "login": "login",
             "mesas": "tables",
             "intro": "intro",
             "votaciones/mesa/:tableId": "voting",
             "gracias": "thanks"
-        },
-
-        home: function () {
-            require(["app/views/home.js"], function (HomeView) {
-                var view = new HomeView();
-                view.delegateEvents();
-            });
         },
 
         login: function () {

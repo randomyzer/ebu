@@ -1,0 +1,19 @@
+## Cache for static content
+
+# One day
+<FilesMatch "\.(css)$">
+  Header set Cache-Control "max-age=86400, public, must-revalidate"
+  Header unset Last-Modified
+</FilesMatch>
+
+# Three days
+<FilesMatch "\.(ico|jpg|jpeg|png|gif)$">
+  Header set Cache-Control "max-age=259200, public, must-revalidate"
+  Header unset Last-Modified
+</FilesMatch>
+
+# A week
+<FilesMatch "\.(js)$">
+  Header set Cache-Control "max-age=1296000, public, must-revalidate"
+  Header unset Last-Modified
+</FilesMatch>
