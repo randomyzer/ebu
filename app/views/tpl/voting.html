@@ -7,13 +7,13 @@
         overflow-y: hidden;
     }
     .parties {
-        /*position: absolute;*/
-        /*top: 0;*/
-        /*left: 0;*/
-        /*padding: 10px;*/
-        /*z-index: 9999;*/
-        /*background-color: #FFF;*/
-        /*margin-top: 0;*/
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px;
+        z-index: 9999;
+        background-color: #FFF;
+        margin-top: 0;
     }
     .parties .party {
         padding: 3px;
@@ -22,8 +22,7 @@
     }
         .parties .party img {
             border-radius: 3px;
-            width: 100%;
-            border-radius: 3px;
+            width: 80px;
         }
         .parties .party p {
             font-size: 7px;
@@ -63,7 +62,7 @@
         <% _.each(parties, function(party) { %>
             <div class="col-xs-4 col-sm-3 col-md-3">
                 <a href="" class="btn btn-default party" data-toggle="modal" data-target="#party-<%= party.id %>">
-                    <img src="<%= server %>/img/politicians/<%= party.foto %>"></td>
+                    <img src="<%= server %>/img/politicians/<%= party.foto %>" class="img-responsive">
                 </a>
                 <div class="modal fade" id="party-<%= party.id %>" tabindex="-1" role="dialog">
                     <div class="modal-dialog">
