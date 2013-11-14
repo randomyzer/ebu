@@ -22,7 +22,8 @@ define(function (require) {
             "mesas": "tables",
             "intro": "intro",
             "votaciones/mesa/:tableId": "voting",
-            "gracias": "thanks"
+            "gracias": "thanks",
+            "cerrar": "logout"
         },
 
         login: function () {
@@ -55,6 +56,12 @@ define(function (require) {
         thanks: function () {
             require(["app/views/thanks.js"], function (ThanksView) {
                 var view = new ThanksView();
+            });
+        },
+
+        logout: function () {
+            require(["app/views/logout.js"], function (LogoutView) {
+                var view = new LogoutView();
             });
         }
     });
