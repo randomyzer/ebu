@@ -52,7 +52,7 @@ define(function (require) {
 
                     if(!data.error) {
                         $(event.currentTarget).closest(".modal").on('hidden.bs.modal', function () {
-                            Backbone.history.navigate("gracias", {trigger: true});
+                            window.location.replace('index.html#gracias');
                         });
 
                         $(event.currentTarget).closest(".modal").modal('hide');
