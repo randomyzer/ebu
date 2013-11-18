@@ -1,6 +1,5 @@
 define('config', {
-    server: 'http://trep.dev/server/web'
-    //server: 'http://encuesta-de-salida.vanillasys.com/server/web'
+    server: 'http://encuesta-de-salida.vanillasys.com/server/web'
 });
 
 require.config({
