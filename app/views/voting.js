@@ -33,32 +33,32 @@ define(function (require) {
         addVoting: function (event) {
             event.preventDefault();
 
-            var id = $(event.currentTarget).attr('party-id');
-
-            var formValues = {
-                table_id: this.options.tableId,
-                party_id: id
-            };
-
             var view = this;
 
-            $.ajax({
-                url: config.server + '/voto/sumar',
-                type: 'POST',
-                dataType: "json",
-                data: formValues,
-                success: function (data) {
-                    view.undelegateEvents();
+            $(event.currentTarget).closest(".modal").on('hidden.bs.modal', function () {
+                var id = $(event.currentTarget).attr('party-id');
 
-                    if(!data.error) {
-                        $(event.currentTarget).closest(".modal").on('hidden.bs.modal', function () {
+                var formValues = {
+                    table_id: view.options.tableId,
+                    party_id: id
+                };
+
+                $.ajax({
+                    url: config.server + '/voto/sumar',
+                    type: 'POST',
+                    dataType: "json",
+                    data: formValues,
+                    success: function (data) {
+                        view.undelegateEvents();
+
+                        if(!data.error) {
                             window.location.replace('index.html#gracias');
-                        });
-
-                        $(event.currentTarget).closest(".modal").modal('hide');
+                        }
                     }
-                }
+                });
             });
+
+            $(event.currentTarget).closest(".modal").modal('hide');
         }
     });
 });
