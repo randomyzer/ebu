@@ -17,6 +17,13 @@
     <script src="vendor/bootstrap/js/respond.min.js"></script>
     <![endif]-->
     <style>
+        body > .container {
+            padding: 0;
+            margin: 0
+        }
+            body > .container .content {
+                padding: 0 10px 80px 10px;
+            }
         h3 {
             margin-top: 0;
         }
@@ -41,9 +48,7 @@
             padding-top: 20px;
             padding-bottom: 20px;
         }
-        .content {
-            padding-bottom: 80px;
-        }
+
     </style>
 </head>
 <body>
@@ -56,7 +61,21 @@
     </div>
     <div class="footer navbar navbar-fixed-bottom">
         <p class="pull-left copyright">Todos los derechos reservados, 2013</p>
-        <div class="pull-right"><a href="#cerrar" class="btn btn-default">Cerrar</a></div>
+        <div class="pull-right"><button class="btn btn-default" data-toggle="modal" data-target="#logout-modal"><i class="icon-signout"></i> Cerrar</button></div>
+    </div>
+
+    <div class="modal fade" id="logout-modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>¿Está seguro que quiere salir?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon-arrow-left"></i> Cancelar</button>
+                    <a href="javascript:void(0);" class="select-btn btn btn-default" onclick="$(this).closest('.modal').on('hidden.bs.modal', function () {window.location.replace('#cerrar')});$(this).closest('.modal').modal('hide')"><i class="icon-ok"></i> Aceptar</a>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 

@@ -31,7 +31,7 @@ require.config({
 });
 
 require(
-    ['jquery', 'backbone', 'app/router.js'],
+    ['jquery', 'backbone', 'app/router.js', 'twitter_bootstrap'],
     function ($, Backbone, Router) {
         var router = new Router();
 

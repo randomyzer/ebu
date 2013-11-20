@@ -1,4 +1,7 @@
 <style>
+    body > .container .content {
+        padding: 0 5px 80px 5px;
+    }
     .parties .party {
         padding: 3px;
         margin-top: 10px;
@@ -54,8 +57,8 @@
                                 <img class="img-thumbnail" src="<%= server %>/img/politicians/<%= party.foto %>">
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                                <button type="button" class="select-btn btn btn-default" party-id="<%= party.id %>">Seleccionar</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="icon-arrow-left"></i> Cancelar</button>
+                                <button type="button" class="select-btn btn btn-default" party-id="<%= party.id %>"><i class="icon-ok"></i> Seleccionar</button>
                             </div>
                         </div>
                     </div>
@@ -64,6 +67,6 @@
         <% }); %>
     </div>
     <div class="action-buttons">
-        <a id="return-button" class="btn btn-default" href="#mesas"><i class="icon-arrow-left"></i> Regresar</a>
+        <a id="return-button" class="btn btn-default" href="index.html#mesas"><i class="icon-arrow-left"></i> Regresar</a>
     </div>
 </div>

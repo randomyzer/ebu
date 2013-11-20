@@ -6,7 +6,6 @@ define(function (require) {
         _                   = require('underscore'),
         Backbone            = require('backbone'),
         tpl                 = require('text!app/views/tpl/voting.html'),
-        twitterBootstrap    = require('twitter_bootstrap'),
 
         template = _.template(tpl);
 
