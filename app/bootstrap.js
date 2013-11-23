@@ -1,5 +1,5 @@
 define('config', {
-    server: 'http://bocadeurna.encuestamovil.info/web'
+    server: 'http://bocadeurna.encuestamovil.info/server/web'
 });
 
 require.config({
