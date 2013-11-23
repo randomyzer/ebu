@@ -1,5 +1,5 @@
 define('config', {
-    server: 'http://encuesta-de-salida.vanillasys.com/server/web'
+    server: 'http://bocadeurna.encuestamovil.info/web'
 });
 
 require.config({
