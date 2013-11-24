@@ -10,7 +10,8 @@ require.config({
         backbone:           'vendor/backbone/backbone-min',
         underscore:         'vendor/underscore/underscore-min',
         text:               'vendor/requirejs/text',
-        twitter_bootstrap:  'vendor/bootstrap/js/bootstrap-min'
+        twitter_bootstrap:  'vendor/bootstrap/js/bootstrap-min',
+        jquery_countdown:   'vendor/jquery-countdown/jquery-countdown'
     },
 
     shim: {
@@ -22,6 +23,9 @@ require.config({
             exports: '_'
         },
         'twitter_bootstrap': {
+            deps: ['jquery']
+        },
+        'jquery_countdown': {
             deps: ['jquery']
         }
     },
